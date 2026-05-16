@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create new route</title>
+  </head>
+  <body>
+    <h1>Create new route</h1>
+    <form action="/listings" method="post">
+      <input type="text" name="listing[title]" placeholder="write title" />
+      <textarea
+        type="text"
+        name="listing[description]"
+        placeholder="what are you writing"
+      >
+      </textarea>
+
+      <input type="text" name="listing[price]" placeholder="write price" />
+      <input type="text " name="listing[image]" placeholder="write image url" />
+      <input
+        type="text"
+        name="listing[location]"
+        placeholder="write location"
+      />
+      <input type="text" name="listing[country]" placeholder="write country" />
+      <button type="submit">Create Listing</button>
+    </form>
+  </body>
+</html>
