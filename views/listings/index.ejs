@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>wonderlust</title>
-</head>
+<%- layout('/layouts/boilerplate') %>
 <body>
     <h3>Our Listings</h3>
+    <form action="/listing/new" method="get"><button>Create New listing</button></form>
     <%for(let listing of listings){%>
     <ul>
         <a href="/listing/<%=listing._id%>"><li><%= listing.title %></li></a>
@@ -14,4 +9,4 @@
 <%}%>
     
 </body>
-</html>
+
