@@ -5,8 +5,7 @@ const Mongo_Url = "mongodb://127.0.0.1:27017/wonderlust";
 const Listing = require("./Models/Listing");
 const path = require("path");
 const ejsMate = require("ejs-mate");
-app.engine("ejs",ejsMate)
-
+app.engine("ejs", ejsMate);
 
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
@@ -68,9 +67,9 @@ app.delete("/listing/:id", async (req, res) => {
   res.redirect("/listing");
 });
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World");
-// });
+app.get("/", (req, res) => {
+  res.send("Hello World");
+});
 // app.get("/listings", async (req, res) => {
 //   let simpleListing = new Listing({
 //     title: "Beautiful Beach House",
