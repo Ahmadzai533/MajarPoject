@@ -7,7 +7,7 @@
     <li><%=listing.location%></li>
     <li><%=listing.country%></li>
     <a href="/listing/<%=listing._id%>/edit"><button>Edit</button></a>
-    <form action="/listings/<%=listing._id%>?_method=DELETE" method="post">
+    <form action="/listing/<%=listing._id%>?_method=DELETE" method="post">
       <button type="submit">Delete</button>
     </form>
   </ul>
