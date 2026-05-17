@@ -1,3 +1,79 @@
 body {
-  background-color: pink;
+  font-family: plus-jakarta, sans-serif !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.container {
+  flex: 1;
+}
+
+.navbar {
+  height: 80px;
+  background-color: white;
+}
+
+.nav-link {
+  color: #222222 !important;
+}
+.fa-compass {
+  color: red;
+}
+
+.f-info {
+  background-color: rgb(231, 227, 227);
+  height: 90px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-evenly;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.i-info-social,
+.i-info-links,
+.i-info-company {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.i-info-links a {
+  color: #222222 !important;
+  text-decoration: none;
+}
+.i-info-links a:hover {
+  text-decoration: underline;
+}
+.i-info-social i {
+  font-size: 20px;
+  margin: 0px 7px;
+}
+
+/* .cards {
+  display: flex;
+}
+*/
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+.card-text {
+  font-size: 18px;
+  padding: 0px 10px;
+}
+.card-links {
+  text-decoration: none;
+  color: #222222 !important;
+}
+.card-img-overlay {
+  opacity: 0;
+}
+.card-img-overlay:hover {
+  opacity: 0.2;
+  background-color: white;
 }
