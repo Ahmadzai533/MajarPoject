@@ -2,11 +2,30 @@
 <body>
     <h3>Our Listings</h3>
     <form action="/listing/new" method="get"><button>Create New listing</button></form>
+     <div class="row   row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-4">
     <%for(let listing of listings){%>
-    <ul>
-        <a href="/listing/<%=listing._id%>"><li><%= listing.title %></li></a>
-    </ul>
+
+     
+        <a href="/listing/<%= listing._id %> " class="card-links">
+            <div class="card col" style="width: 20rem;">
+                <img src="<%=listing.image.url %>" class="card-img-top" alt="listing image">
+                  <div class="card-img-overlay"></div>
+                <div class="card-body">
+                    <p class="card-text"><%= listing.title %><br/>
+                        &#8377;<%=listing.price.toLocaleString("en-IN")%><br/>
+
+    </p>
+  </div>
+     
+
+
+
+ </div>
+ </a>
+    
 <%}%>
+
+
     
 </body>
 
