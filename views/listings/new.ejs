@@ -1,30 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Create new route</title>
-  </head>
-  <body>
-    <h1>Create new route</h1>
-    <form action="/listings" method="post">
-      <input type="text" name="listing[title]" placeholder="write title" />
-      <textarea
-        type="text"
-        name="listing[description]"
-        placeholder="what are you writing"
-      >
-      </textarea>
+<%- layout('/layouts/boilerplate') %>
+<body>
+  <br />
+  <br />
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h1>Create new route</h1>
+      <form action="/listing" method="post">
+        <div>
+          <label for="title" class="form-label">Title</label>
+          <input type="text" name="listing[title]" class="form-control" />
+        </div>
 
-      <input type="text" name="listing[price]" placeholder="write price" />
-      <input type="text " name="listing[image]" placeholder="write image url" />
-      <input
-        type="text"
-        name="listing[location]"
-        placeholder="write location"
-      />
-      <input type="text" name="listing[country]" placeholder="write country" />
-      <button type="submit">Create Listing</button>
-    </form>
-  </body>
-</html>
+        <div>
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            type="text"
+            name="listing[description]"
+            class="form-control"
+          >
+          </textarea>
+        </div>
+        <div class="row">
+          <div class="row mb-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input
+              type="text"
+              name="listing[price]"
+              placeholder="write price"
+              class="form-control"
+            />
+          </div>
+
+          <div class="row mb-3 col-md-8 ">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" name="listing[location]" class="form-control" />
+          </div>
+        </div>
+
+        <div>
+          <label for="image" class="form-label">Image URL</label>
+          <input
+            type="text "
+            name="listing[image]"
+            placeholder="write image url"
+            class="form-control"
+          />
+        </div>
+
+        <div>
+          <label for="country" class="form-label">Country</label>
+          <input
+            type="text"
+            name="listing[country]"
+            placeholder="write country"
+            class="form-control"
+          />
+        </div>
+        <br />
+
+        <button class="btn btn-danger" type="submit">Add</button>
+      </form>
+    </div>
+  </div>
+  <br />
+  <br />
+</body>
