@@ -1,31 +1,102 @@
-<<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Listing</title>
-  </head>>
-  <body>
-    <h1>Edit Listing</h1>
-    <form action="/listings/<%= listing._id %>?_method=PUT" method="post">
-      <input type="text" name="listing[title]" value="<%=listing.title%>" />
-      <textarea
-        type="text"
-        name="listing[description]"
-        placeholder="what are you writing"
-      >
-      <%=listing.description%>
-      </textarea>
+<%- layout('/layouts/boilerplate') %>
+<body>
+  <br />
+  <div class="row">
+    <div class="col-8 offset-2">
+      <h1>Edit Listing</h1>
+      <form action="/listing/<%= listing._id %>?_method=PUT" method="post">
+        <div>
+          <label for="title" class="form-label">Title</label>
+          <input
+            type="text"
+            name="listing[title]"
+            class="form-control"
+            value="<%=listing.title%>"
+          />
+        </div>
 
-      <input type="text" name="listing[price]" value="<%=listing.price%>" />
-      <input type="text " name="listing[image]" value="<%=listing.image%>" />
-      <input
-        type="text"
-        name="listing[location]"
-        placeholder="write location"
-      />
-      <input type="text" name="listing[country]" value="<%=listing.country%>" />
-      <button type="submit">edit</button>
-    </form>
-  </body>
-</html>
+        <div>
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            type="text"
+            name="listing[description]"
+            class="form-control"
+          >
+      <%=listing.description%>
+      </textarea
+          >
+        </div>
+
+        <div class="row">
+          <div class="row mb-3 col-md-4">
+            <label for="price" class="form-label">Price</label>
+            <input
+              type="text"
+              name="listing[price]"
+              placeholder="write price"
+              class="form-control"
+              value="<%=listing.price%>"
+            />
+          </div>
+
+          <div class="row col-md-8 mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input
+              type="text"
+              name="listing[country]"
+              placeholder="write country"
+              class="form-control"
+              value="<%=listing.country%>"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label for="price" class="form-label">Price</label>
+          <input
+            type="text"
+            name="listing[price]"
+            placeholder="write price"
+            class="form-control"
+            value="<%=listing.price%>"
+          />
+        </div>
+        <div>
+          <label for="image" class="form-label">Image URL</label>
+          <input
+            type="text "
+            name="listing[image]"
+            placeholder="write image url"
+            class="form-control"
+            value="<%=listing.image%>"
+          />
+        </div>
+
+        <div>
+          <label for="location" class="form-label">Location</label>
+          <input
+            type="text"
+            name="listing[location]"
+            placeholder="write location"
+            class="form-control"
+            value="<%=listing.location%>"
+          />
+        </div>
+
+        <div>
+          <label for="country" class="form-label">Country</label>
+          <input
+            type="text"
+            name="listing[country]"
+            value="<%=listing.country%>"
+          />
+        </div>
+
+        <button class="btn btn-danger" type="submit">edit</button>
+      </form>
+    </div>
+  </div>
+  <br />
+
+  <br />
+</body>
