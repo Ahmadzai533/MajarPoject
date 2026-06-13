@@ -5,13 +5,21 @@
   <div class="row">
     <div class="col-8 offset-2">
       <h1>Create new route</h1>
-      <form action="/listing" method="post" invalid>
+      <form action="/listing" method="post" novalidate class="needs-validation">
         <div>
+          <div class="valid-feedback">Looks good!</div>
           <label for="title" class="form-label">Title</label>
-          <input type="text" name="listing[title]" class="form-control" />
+          <input
+            type="text"
+            name="listing[title]"
+            class="form-control"
+            required
+          />
         </div>
 
         <div>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please provide a valid title.</div>
           <label for="description" class="form-label">Description</label>
           <textarea
             type="text"
@@ -31,11 +39,20 @@
               class="form-control"
               required
             />
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please provide a valid price.</div>
           </div>
 
-          <div class="row mb-3 col-md-8 ">
+          <div class="row mb-3 col-md-8">
             <label for="location" class="form-label">Location</label>
-            <input type="text" name="listing[location]" class="form-control" required />
+            <input
+              type="text"
+              name="listing[location]"
+              class="form-control"
+              required
+            />
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">Please provide a valid location.</div>
           </div>
         </div>
 
@@ -48,6 +65,8 @@
             class="form-control"
             required
           />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please provide a valid image.</div>
         </div>
 
         <div>
@@ -59,6 +78,8 @@
             class="form-control"
             required
           />
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please provide a valid country.</div>
         </div>
         <br />
 
