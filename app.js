@@ -40,6 +40,7 @@ app.get("/listing/new", (req, res) => {
 app.get("/listing/:id", async (req, res) => {
   let { id } = req.params;
   let listing = await Listing.findById(id);
+  console.log(listing);
   res.render("listings/show.ejs", { listing });
 });
 app.post("/listing", async (req, res) => {
@@ -53,12 +54,19 @@ app.post("/listing", async (req, res) => {
 app.get("/listing/:id/edit", async (req, res) => {
   let { id } = req.params;
   let listing = await Listing.findById(id);
+  console.log(listing);
   res.render("listings/edit.ejs", { listing });
 });
-app.put("/listing/:id", async (req, res) => {
-  let { id } = req.params;
-  await Listing.findByIdAndUpdate(id, { ...req.body.listing });
-  res.redirect(`/listing/${id}`);
+app.put("/listing/:id", async (req,next, res) => {
+  try {
+    let { id } = req.params;
+    await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+
+    res.redirect(`/listing/${id}`);
+  } catch (err) {
+    console.log(err);
+    res.send("something went wrong");
+  }
 });
 app.delete("/listing/:id", async (req, res) => {
   let { id } = req.params;
@@ -84,6 +92,9 @@ app.get("/", (req, res) => {
 //       res.send("Listing created successfully: ");
 //     });
 // });
+app.use((err, next, req, res) => {
+  res.send("something went wrong");
+});
 
 app.listen(8080, () => {
   console.log("Server is running on port 8080");
