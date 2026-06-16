@@ -6,6 +6,9 @@ const Listing = require("./Models/Listing");
 const path = require("path");
 const ejsMate = require("ejs-mate");
 app.engine("ejs", ejsMate);
+const wrapAsync = require("./utils/wrapAsync");
+const ExpressError = require("./utils/ExpressError");
+const { listingSchema } = require("./schema");
 
 const methodOverride = require("method-override");
 app.use(methodOverride("_method"));
@@ -40,33 +43,36 @@ app.get("/listing/new", (req, res) => {
 app.get("/listing/:id", async (req, res) => {
   let { id } = req.params;
   let listing = await Listing.findById(id);
-  console.log(listing);
   res.render("listings/show.ejs", { listing });
 });
-app.post("/listing", async (req, res) => {
-  // let newListting = new Listing(req.body.listing);
-  // await newListting.save();
-  // res.redirect("/listings");
-  let newListing = new Listing(req.body.listing);
-  await newListing.save();
-  res.redirect("/listing");
-});
+app.post(
+  "/listing",
+  
+  wrapAsync(async (req, res) => {
+    const { error } = listingSchema.validate(req.body);
+    if (error) {
+      throw new ExpressError(400, "Invalid listing data");
+    }
+    let newListing = new Listing(req.body.listing);
+    await newListing.save();
+    res.redirect("/listing");
+  }),
+);
 app.get("/listing/:id/edit", async (req, res) => {
   let { id } = req.params;
   let listing = await Listing.findById(id);
-  console.log(listing);
+
   res.render("listings/edit.ejs", { listing });
 });
-app.put("/listing/:id", async (req,next, res) => {
-  try {
-    let { id } = req.params;
-    await Listing.findByIdAndUpdate(id, { ...req.body.listing });
-
-    res.redirect(`/listing/${id}`);
-  } catch (err) {
-    console.log(err);
-    res.send("something went wrong");
+app.put("/listing/:id", async (req, next, res) => {
+  let { id } = req.params;
+  const { error } = listingSchema.validate(req.body);
+  if (error) {
+    throw new ExpressError(400, "Invalid listing data");
   }
+  await Listing.findByIdAndUpdate(id, { ...req.body.listing });
+
+  res.redirect(`/listing/${id}`);
 });
 app.delete("/listing/:id", async (req, res) => {
   let { id } = req.params;
@@ -92,8 +98,16 @@ app.get("/", (req, res) => {
 //       res.send("Listing created successfully: ");
 //     });
 // });
-app.use((err, next, req, res) => {
-  res.send("something went wrong");
+// app.all("*",(req,res,next)=>{
+//   next(new ExpressError(400,"page not found"))
+// })
+// app.all("*", (req, res, next) => {
+//   next(new ExpressError(400, "page not found"));
+// });
+
+app.use((err, req, res, next) => {
+  let { statusCode = 400, messege = "selet the right information" } = err;
+  res.render("error.ejs", { messege });
 });
 
 app.listen(8080, () => {
