@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const Mongo_Url = "mongodb://127.0.0.1:27017/wonderlust";
 const Listing = require("./Models/Listing");
 const path = require("path");
-const ejsMate = require("ejs-mate");
+const ejsMate = require(" ejs-mate ");
 app.engine("ejs", ejsMate);
 const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError");
@@ -106,9 +106,11 @@ app.get("/", (req, res) => {
 // });
 
 app.use((err, req, res, next) => {
-  let { statusCode = 400, messege = "selet the right information" } = err;
+  let { statusCode = 400, messege = "error" } = err;
   res.render("error.ejs", { messege });
 });
+
+
 
 app.listen(8080, () => {
   console.log("Server is running on port 8080");
